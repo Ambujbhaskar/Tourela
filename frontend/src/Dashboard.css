@@ -1,0 +1,22 @@
+#boardWrapper{
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 14fr 1fr;
+}
+#board{
+    grid-column: 2/3;
+    background-color: #3f3f3f;
+
+    height: 200px;
+
+    font-family: "DM Serif Display", serif;
+    font-style: italic;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    color: #aaaaaa;
+}
