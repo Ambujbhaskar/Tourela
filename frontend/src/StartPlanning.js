@@ -5,6 +5,7 @@ import React from "react";
 
 import NavBar from "./NavBar";
 import BottomNav from "./BottomNav";
+import PlaceBoard from "./PlaceBoard";
 
 require('dotenv').config({ debug: true });
 
@@ -56,8 +57,13 @@ function StartPlanning(){
     const [query, setQuery] = useState("");
     const autoCompleteRef = useRef(null);
   
+    const [pacing, setPacing] = useState(null);
+    const [numOfPeople, setPeople] = useState(null);
+    const [startDate, setDate] = useState(null);
+
+
     useEffect(() => {
-      console.log(process.env.AMBUJ_API_KEY);
+      // console.log(process.env.AMBUJ_API_KEY);
       loadScript(
         `https://maps.googleapis.com/maps/api/js?key=AIzaSyCzTN1Zqa0NbrnRacQxidLwOppnVIjta-g&libraries=places`,
         () => handleScriptLoad(setQuery, autoCompleteRef)
@@ -66,15 +72,13 @@ function StartPlanning(){
 
 
 
-    // function addPlace(event){
-    //     event.preventDefault();
-
-    // }
+    function addPlaceHandler(event){
+      return;
+    }
 
     return (
         <>
         <NavBar page="categories" />
-
 
         <div id="formWrapper">
             
@@ -85,44 +89,46 @@ function StartPlanning(){
             <div id="forms">
                 <div className="form" id="form1">
 
-                  <div class="formInputWrapper">
+                  <div className="formInputWrapper" id="inputWrapper1">
                       <input 
                           ref={autoCompleteRef}
                           onChange={event => setQuery(event.target.value)}
-                          class="formInput" id="placeSearchInput" placeholder="City name"
+                          className="formInput" id="placeSearchInput" placeholder="City name"
                           value={query}
                       />
                   </div>
                   
-                  <div class="formInputWrapper">
-                      <input 
-                          class="formInput" id="placeDaysInput" placeholder="Duration in days" type="number" />
-                      <button className="formBtn" id="addPlaceBtn">Add Place</button>
+                  <div className="formInputWrapper" id="inputWrapper2">
+                      <input className="formInput" id="placeDaysInput" placeholder="Duration in days" type="number" />
+                  </div>
+                  <div className="formInputWrapper" id="inputWrapper3">
+                    <button className="formBtn" id="addPlaceBtn" onClick={addPlaceHandler}>Add Place</button>
                   </div>
 
                 </div>
 
                 <div className="form" id="form2">
 
-                  <div class="formInputWrapper">
-                    <form id="pacingWrapper">
-                      <select name="pacingTypes" className="formInput" id="pacingInput" placeholder="Pacing of the trip">
-                        <option className="pacingValues">Slow</option>
-                        <option className="pacingValues">Medium</option>
-                        <option className="pacingValues">Fast</option>
+                  <div class="formInputWrapper" id="inputWrapper4">
+                      <select onChange={event => setPacing(event.target.value)} name="pacingTypes" className="formInput" id="pacingInput" placeholder="Pacing of the trip">
+                        <option className="pacingValues" value="none" disabled selected hidden>Pacing of the Trip</option>
+                        <option className="pacingValues" value="Slow">Slow</option>
+                        <option className="pacingValues" value="Medium">Medium</option>
+                        <option className="pacingValues" value="Fast">Fast</option>
                       </select>
-                    </form>
                   </div>
                 
-                  <div className="formInputWrapper">
+                  <div onChange={event => setPeople(event.target.value)} className="formInputWrapper" id="inputWrapper5">
                     <input class="formInput" id="numberOfPeopleInput" placeholder="Number of People" type="number"/>
                   </div>
 
+                  <div onChange={event => setDate(event.target.value)} id="formLabelWrapper">Trip Starting Date:</div>
+                  <div className="formInputWrapper" id="inputWrapper6">
+                    <input class="formInput" id="startDateInput" placeholder="Starting Date" type="date"/>
+                  </div>
                 </div>
 
-                <div className="form" id="placeBoard">
-                  Added places will appear here
-                </div>
+                <PlaceBoard />
             </div>
         </div>
 

@@ -1,12 +1,12 @@
 {
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "name": "tourela",
   "version": "1.0.0",
   "description": "",
   "main": "frontend/index.js",
   "scripts": {
     "start": "concurrently -k -p '{name}' -n 'backend,frontend' -c 'bgBlue.bold,bgGreen.bold' 'npm:backend' 'npm:frontend'",
-    "backend": "npm start --prefix backend",
+    "backend": "npm run devstart --prefix backend",
     "frontend": "npm start --prefix frontend",
     "setup": "npm ci && npm ci --prefix frontend && npm ci --prefix backend",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/Ambujbhaskar/tourela#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "concurrently": "^7.1.0"

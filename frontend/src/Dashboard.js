@@ -1,8 +1,11 @@
 import './Dashboard.css';
+import React from 'react';
 
 function Dashboard(props){
 
-    switch(props.status){
+    const status = props.status;
+
+    switch(status){
 
         // no ongoing no upcoming
         case 1:
@@ -13,7 +16,6 @@ function Dashboard(props){
                         No ongoing or upcoming trips
                     </div>
                 </div>
-                
                 </>
             );
         
@@ -46,16 +48,6 @@ function Dashboard(props){
                 </>
             );
     }
-    return(
-        <>
-        <div id="boardWrapper">
-            <div id="board">
-            {props.status}
-            </div>
-        </div>
-        
-        </>
-    );
 
 }
 
