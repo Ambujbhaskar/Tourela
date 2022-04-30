@@ -1,4 +1,4 @@
-import './NavBar.css';
+import './styles/NavBar.css';
 import React from 'react';
 import tourelaLogoWhite from "./assets/tourelaLogoWhite.png";
 import { process_params } from 'express/lib/router';

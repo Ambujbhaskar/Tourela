@@ -1,4 +1,4 @@
-import "./BottomNav.css";
+import "./styles/BottomNav.css";
 
 import React from "react";
 import { Outlet, Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import './Recommendations.css';
+import './styles/Recommendations.css';
 
 import React from "react";
 

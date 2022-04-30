@@ -1,4 +1,4 @@
-import "./Categories.css";
+import "./styles/Categories.css";
 
 import React from "react";
 import NavBar from "./NavBar";

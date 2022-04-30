@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./PlaceBoard.css";
+import "./styles/PlaceBoard.css";
 
 export default function PlaceBoard(){
     const [state, setState] = useState("Empty");

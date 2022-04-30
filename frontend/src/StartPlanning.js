@@ -1,4 +1,4 @@
-import "./StartPlanning.css";
+import "./styles/StartPlanning.css";
 
 import { useState, useEffect, useRef} from "react";
 import React from "react";
@@ -65,7 +65,7 @@ function StartPlanning(){
     useEffect(() => {
       // console.log(process.env.AMBUJ_API_KEY);
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=AIzaSyCzTN1Zqa0NbrnRacQxidLwOppnVIjta-g&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK4AY-rgOs4oBrIqNuZfGqqZEu0tSUyk&libraries=places`,
         () => handleScriptLoad(setQuery, autoCompleteRef)
       );
     }, []);
