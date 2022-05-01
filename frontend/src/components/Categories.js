@@ -1,19 +1,19 @@
-import "./styles/Categories.css";
+import "../styles/Categories.css";
 
 import React from "react";
-import NavBar from "./NavBar";
-import BottomNav from "./BottomNav";
+import NavBar from "../components/NavBar";
+import BottomNav from "../components/BottomNav";
 
-import img1 from "./assets/categories/historicSitesImg.png";
-import img2 from "./assets/categories/bodyRelaxingImg.png";
-import img3 from "./assets/categories/religiousSitesImg.png";
-import img4 from "./assets/categories/parksAndGardensImg.png";
-import img5 from "./assets/categories/outdoorsImg.png";
-import img6 from "./assets/categories/museumsImg.png";
-import img7 from "./assets/categories/cuisinesImg.png";
-import img8 from "./assets/categories/shoppingImg.png";
-import img9 from "./assets/categories/funAndGamesImg.png";
-import img10 from "./assets/categories/drinksAndDanceImg.png";
+import img1 from "../assets/categories/historicSitesImg.png";
+import img2 from "../assets/categories/bodyRelaxingImg.png";
+import img3 from "../assets/categories/religiousSitesImg.png";
+import img4 from "../assets/categories/parksAndGardensImg.png";
+import img5 from "../assets/categories/outdoorsImg.png";
+import img6 from "../assets/categories/museumsImg.png";
+import img7 from "../assets/categories/cuisinesImg.png";
+import img8 from "../assets/categories/shoppingImg.png";
+import img9 from "../assets/categories/funAndGamesImg.png";
+import img10 from "../assets/categories/drinksAndDanceImg.png";
 
 const selectedCategories = {
     historicSites: false,

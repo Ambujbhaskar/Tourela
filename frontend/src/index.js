@@ -12,8 +12,8 @@ import Login from './pages/Login';
 import './styles/index.css';
 
 import App from './pages/App';
-import Categories from './Categories';
-import StartPlanning from './StartPlanning';
+import Categories from './components/Categories';
+import StartPlanning from './components/StartPlanning';
 
 ReactDOM.render(
   <BrowserRouter>

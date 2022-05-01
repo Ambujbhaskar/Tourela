@@ -1,11 +1,11 @@
-import './styles/App.css';
+import '../styles/App.css';
 
 import React, { useState, useEffect, useSelector } from "react";
 import axios from "axios";
 
-import Dashboard from './Dashboard';
-import NavBar from './NavBar';
-import Recommendations from './Recommendations';
+import Dashboard from '../components/Dashboard';
+import NavBar from '../components/NavBar';
+import Recommendations from '../components/Recommendations';
 import { Navigate } from "react-router-dom";
 
 

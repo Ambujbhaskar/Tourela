@@ -1,11 +1,11 @@
-import './styles/Recommendations.css';
+import '../styles/Recommendations.css';
 
 import React from "react";
 
-import agraImg from "./assets/recommendations/agraImg.png";
-import jaipurImg from "./assets/recommendations/jaipurImg.png";
-import kolkataImg from "./assets/recommendations/kolkataImg.png";
-import amritsarImg from "./assets/recommendations/amritsarImg.png";
+import agraImg from "../assets/recommendations/agraImg.png";
+import jaipurImg from "../assets/recommendations/jaipurImg.png";
+import kolkataImg from "../assets/recommendations/kolkataImg.png";
+import amritsarImg from "../assets/recommendations/amritsarImg.png";
 
 function Recommendations(){
     return(

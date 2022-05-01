@@ -1,13 +1,13 @@
-import "./styles/StartPlanning.css";
+import "../styles/StartPlanning.css";
 
 import { useState, useEffect, useRef} from "react";
 import React from "react";
 
-import NavBar from "./NavBar";
-import BottomNav from "./BottomNav";
-import PlaceBoard from "./PlaceBoard";
+import NavBar from "../components/NavBar";
+import BottomNav from "../components/BottomNav";
+import PlaceBoard from "../components/PlaceBoard";
 
-require('dotenv').config({ debug: true });
+require('dotenv').config();
 
 let autoComplete;
 
@@ -63,9 +63,9 @@ function StartPlanning(){
 
 
     useEffect(() => {
-      // console.log(process.env.AMBUJ_API_KEY);
+      console.log(process.env);
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK4AY-rgOs4oBrIqNuZfGqqZEu0tSUyk&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`,
         () => handleScriptLoad(setQuery, autoCompleteRef)
       );
     }, []);
