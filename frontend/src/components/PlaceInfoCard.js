@@ -6,7 +6,7 @@ import "../styles/PlaceInfoContainer.css";
 export default function PlaceInfoCard ({placeName, placeDays, placeCardInfo, setPlaceCardInfo}){
 
     function removePlace(){
-        const tempArr = placeCardInfo;
+        const tempArr = [...placeCardInfo];
         console.log(placeCardInfo);
 
         for( var i = 0; i < tempArr.length; i++){ 
@@ -14,8 +14,9 @@ export default function PlaceInfoCard ({placeName, placeDays, placeCardInfo, set
                 tempArr.splice(i, 1);
             }
         }
+        setPlaceCardInfo(tempArr);
         console.log(placeCardInfo);
-        setPlaceCardInfo(placeCardInfo);
+
 
     }
 

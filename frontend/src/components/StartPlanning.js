@@ -53,7 +53,7 @@ function StartPlanning(){
 
     const [query, setQuery] = useState("");
     const autoCompleteRef = useRef(null);
-  
+
     const [pacing, setPacing] = useState(null);
     const [numOfPeople, setPeople] = useState(null);
     const [startDate, setDate] = useState(null);
@@ -62,7 +62,7 @@ function StartPlanning(){
       {placeName: "Patna", placeDays: 7},
       {placeName: "Trivandrum", placeDays: 6},
       {placeName: "Pune", placeDays: 8},
-      {placeName: "Delhi", placeDays: 5}
+      {placeName: "Delhi", placeDays: 10}
     ]);
 
     useEffect(() => {
@@ -71,9 +71,7 @@ function StartPlanning(){
         () => handleScriptLoad(setQuery, autoCompleteRef)
       );
     }, []);
-
-
-
+    
     function addPlaceHandler(event){
       return;
     }
