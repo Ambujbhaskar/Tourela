@@ -49,9 +49,6 @@ async function handlePlaceSelect(updateQuery) {
 }
 
 
-
-
-
 function StartPlanning(){
 
     const [query, setQuery] = useState("");
@@ -61,9 +58,14 @@ function StartPlanning(){
     const [numOfPeople, setPeople] = useState(null);
     const [startDate, setDate] = useState(null);
 
+    const [placeCardInfo, setPlaceCardInfo] = useState([
+      {placeName: "Patna", placeDays: 7},
+      {placeName: "Trivandrum", placeDays: 6},
+      {placeName: "Pune", placeDays: 8},
+      {placeName: "Delhi", placeDays: 5}
+    ]);
 
     useEffect(() => {
-      console.log(process.env);
       loadScript(
         `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`,
         () => handleScriptLoad(setQuery, autoCompleteRef)
@@ -128,7 +130,7 @@ function StartPlanning(){
                   </div>
                 </div>
 
-                <PlaceBoard />
+                <PlaceBoard placeCardInfo={placeCardInfo} setPlaceCardInfo={setPlaceCardInfo}/>
             </div>
         </div>
 

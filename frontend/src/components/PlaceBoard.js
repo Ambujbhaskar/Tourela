@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../styles/PlaceBoard.css";
+import PlaceInfoCard from "./PlaceInfoCard";
 
-export default function PlaceBoard(){
-    const [state, setState] = useState("Empty");
-    const [placeCount, setPlaceCount] = useState(0);
+export default function PlaceBoard({placeCardInfo, setPlaceCardInfo}){
+    
+    function places(placeCardInfo){
+        // console.log(placeCardInfo);
+        return placeCardInfo.map((place, index) => {
+            return <PlaceInfoCard key={index} placeName={place.placeName} placeDays={place.placeDays} placeCardInfo={placeCardInfo} setPlaceCardInfo={setPlaceCardInfo}/>;
+        })
+    }
 
-    if(state==="Empty"){
+    if(placeCardInfo.length==0){
         return(
             <>
             <div id="placeBoard">
@@ -15,8 +21,16 @@ export default function PlaceBoard(){
             </>
         );
     }
-    // else(){
-
-    // }
+    else{
+        return(
+            <>
+            <div id="placeBoard">
+                {
+                    places(placeCardInfo)
+                }
+            </div>
+            </>
+        );
+    }
 
 }
