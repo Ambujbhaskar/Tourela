@@ -55,9 +55,9 @@ export default function BottomNav(props){
                     </Link>
                     <Link to="/results">
                         <button className="navButton1" id="nextBtn" onClick={setInfo}>
-                                <div className="btnText">
-                                    Next
-                                </div>
+                            <div className="btnText">
+                                Next
+                            </div>
                         </button>
                     </Link>
                 </div>
@@ -68,4 +68,33 @@ export default function BottomNav(props){
         );
     }
 
+    else if(props.page=="Results"){
+        function setPlaces(){
+            ;
+        }
+        return(
+            <>
+            <div id="buttonsWrapper">
+                <div id="buttons">
+                    <Link to="/startplanning">    
+                        <button className="navButton2" id="backBtn">
+                            <div className="btnText">
+                                Back
+                            </div>
+                        </button>
+                    </Link>
+                    <Link to="/itinerary">
+                        <button className="navButton1" id="nextBtn" onClick={setPlaces}>
+                            <div className="btnText">
+                                Done
+                            </div>
+                        </button>
+                    </Link>
+                </div>
+                <Outlet />
+            </div>
+            
+            </>
+        );
+    }
 } 

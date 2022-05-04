@@ -15,6 +15,7 @@ import App from './pages/App';
 import Categories from './components/Categories';
 import StartPlanning from './components/StartPlanning';
 import Results from './components/Results';
+import Itinerary from './components/Itinerary';
 
 
 ReactDOM.render(
@@ -25,7 +26,7 @@ ReactDOM.render(
       <Route path="/Categories" element={<Categories />} />
       <Route path="/startplanning" element={<StartPlanning />} />
       <Route path="/results" element={<Results />} />
-      {/* <Route path="/itinerary" element={} /> */}
+      <Route path="/itinerary" element={<Itinerary />} />
 
       <Route path="/login" element={<Login />} />
 

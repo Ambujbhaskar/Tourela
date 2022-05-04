@@ -102,6 +102,37 @@ function NavBar(props) {
       </>
     );
   }
+
+  else if (props.page === "Itinerary"){
+    return(
+      <>
+      <div id="headingText">
+        Tourela
+      </div>
+
+      <div id='navbar'>
+        
+        <div id="logo">
+          <Link to="/">
+            <img id="logoImg" src={tourelaLogoWhite} ></img>
+          </Link>
+        </div>
+
+        <div id='navButtons'>
+          {/* <Link to="/Categories">
+            <button class='buttons' id='cta'>
+              <div class='buttonText' id='ctaText'>
+                Start Planning
+              </div>
+            </button>
+          </Link> */}
+          <button class='buttons' id='profileButton'></button>
+        </div>
+        <Outlet />
+      </div>
+      </>
+    );
+  }
   
 }
 

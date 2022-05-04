@@ -1,4 +1,4 @@
-#formWrapper{
+.formWrapper{
     margin-top: 1rem;   
     margin-bottom: 1.6rem;
 
@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: 1fr 14fr 1fr;
 }
-#planHeading{
+.planHeading{
     grid-column: 2/3;
 
     font-family: "buenard";
