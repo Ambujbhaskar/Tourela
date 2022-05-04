@@ -1,6 +1,6 @@
 import "../styles/Categories.css";
 
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import BottomNav from "../components/BottomNav";
 
@@ -15,26 +15,9 @@ import img8 from "../assets/categories/shoppingImg.png";
 import img9 from "../assets/categories/funAndGamesImg.png";
 import img10 from "../assets/categories/drinksAndDanceImg.png";
 
-const selectedCategories = {
-    historicSites: false,
-    bodyRelaxing: false,
-    religiousSites: false,
-    parksAndGardens: false,
-    outdoors: false,
-    museums: false,
-    cuisines: false,
-    shopping: false,
-    funAndGames: false,
-    drinksAndDance: false
-}
-
-function selectCategory(e){
-    // switch ()
-    // selectCategories.
-    return (e.target.classList.toggle('activeCard'));
-}
-
 function Categories(){
+    const [selectedCategories, setCategories] = useState([]);
+
     return (
         <>
         <NavBar page="categories"/>
@@ -48,29 +31,53 @@ function Categories(){
 
         <div id="categoryCardsWrapper">
             <div id="categoryCards">
-                <CategoryCard num={1} text="Historic Sites" />
-                <CategoryCard num={2} text="Body Relaxing" />
-                <CategoryCard num={3} text="Religious Sites" />
-                <CategoryCard num={4} text="Parks and Gardens" />
-                <CategoryCard num={5} text="Outdoors" />
-                <CategoryCard num={6} text="Museums" />
-                <CategoryCard num={7} text="Cuisines" />
-                <CategoryCard num={8} text="Shopping" />
-                <CategoryCard num={9} text="Fun and Games" />
-                <CategoryCard num={10} text="Drinks and Dance" />
-
-
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={1} text="Historic Sites" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={2} text="Body Relaxing" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={3} text="Religious Sites" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={4} text="Parks and Gardens" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={5} text="Outdoors" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={6} text="Museums" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={7} text="Cuisines" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={8} text="Shopping" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={9} text="Fun and Games" />
+                <CategoryCard setCategories={setCategories} selectedCategories={selectedCategories} num={10} text="Drinks and Dance" />
             </div>
         </div>
 
-        <BottomNav page="categories"/>
+        <BottomNav page="categories" selectedCategories={selectedCategories}/>
         </>
     );
 }
 
 function CategoryCard(props){
     const i = props.num;
-    const text = props.text;
+
+    function selectCategory(e){
+        const arr = [...props.selectedCategories];
+        if(arr.includes(i)){
+            for(let j=0; j < arr.length; j++){
+                if(arr[j] == i){
+                    arr.splice(j,1);
+                }
+            }
+            props.setCategories(arr);
+        }
+        else{
+            props.setCategories([...arr, i]);
+        }
+        return (e.target.classList.toggle('activeCard'));
+    }
+
+    return (
+        <>
+        <div class="categoryCard" id={"card"+props.num}>
+            <img class="cardImg2" src={imgsrc(props.num)} onClick={selectCategory}></img> 
+            <div class="categoriesFilm" id="film1"></div>
+            <div class="categoriesCardText" id="text1">{props.text}</div>
+        </div>
+        </>
+    );
+}
 
     function imgsrc(i){
         switch(i){
@@ -96,16 +103,4 @@ function CategoryCard(props){
                 return img10;
         }
     }
-
-    return (
-        <>
-        <div class="categoryCard" id={"card"+props.num}>
-            <img class="cardImg2" src={imgsrc(props.num)} onClick={selectCategory}></img> 
-            <div class="categoriesFilm" id="film1"></div>
-            <div class="categoriesCardText" id="text1">{props.text}</div>
-        </div>
-        </>
-    );
-}
-
 export default Categories;

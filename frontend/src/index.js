@@ -14,6 +14,8 @@ import './styles/index.css';
 import App from './pages/App';
 import Categories from './components/Categories';
 import StartPlanning from './components/StartPlanning';
+import Results from './components/Results';
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -22,8 +24,8 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="/Categories" element={<Categories />} />
       <Route path="/startplanning" element={<StartPlanning />} />
-      <Route path="/results" element={<Login />} />
-      <Route path="/itinerary" element={<Login />} />
+      <Route path="/results" element={<Results />} />
+      {/* <Route path="/itinerary" element={} /> */}
 
       <Route path="/login" element={<Login />} />
 

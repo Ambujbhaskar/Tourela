@@ -14,10 +14,8 @@ export default function PlaceInfoCard ({placeName, placeDays, placeCardInfo, set
                 tempArr.splice(i, 1);
             }
         }
-        setPlaceCardInfo(tempArr);
         console.log(placeCardInfo);
-
-
+        setPlaceCardInfo(tempArr);
     }
 
     return(

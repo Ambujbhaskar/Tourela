@@ -10,7 +10,6 @@ import PlaceBoard from "../components/PlaceBoard";
 require('dotenv').config();
 
 let autoComplete;
-
 const loadScript = (url, callback) => {
   let script = document.createElement("script");
   script.type = "text/javascript";
@@ -29,7 +28,6 @@ const loadScript = (url, callback) => {
   script.src = url;
   document.getElementsByTagName("head")[0].appendChild(script);
 };
-
 function handleScriptLoad(updateQuery, autoCompleteRef) {
     autoComplete = new window.google.maps.places.Autocomplete(
       autoCompleteRef.current,
@@ -40,101 +38,111 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
       handlePlaceSelect(updateQuery)
     );
 }
-
 async function handlePlaceSelect(updateQuery) {
     const addressObject = autoComplete.getPlace();
     const query = addressObject.formatted_address;
     updateQuery(query);
-    console.log(addressObject);
+    console.log("selected Place: ", addressObject);
 }
 
 
 function StartPlanning(){
+  // const [placeIDs, setPlaceIDs] = useState();
 
-    const [query, setQuery] = useState("");
-    const autoCompleteRef = useRef(null);
+  const [query, setQuery] = useState("");
+  const autoCompleteRef = useRef(null);
+  const [numOfDays, setNumOfDays] = useState(null);
 
-    const [pacing, setPacing] = useState(null);
-    const [numOfPeople, setPeople] = useState(null);
-    const [startDate, setDate] = useState(null);
+  const [pacing, setPacing] = useState(null);
+  const [numOfPeople, setPeople] = useState(null);
+  const [startDate, setDate] = useState(null);
 
-    const [placeCardInfo, setPlaceCardInfo] = useState([
-      {placeName: "Patna", placeDays: 7},
-      {placeName: "Trivandrum", placeDays: 6},
-      {placeName: "Pune", placeDays: 8},
-      {placeName: "Delhi", placeDays: 10}
-    ]);
+  const [placeCardInfo, setPlaceCardInfo] = useState([
+    // {placeName: "Patna", placeDays: 7},
+    // {placeName: "Trivandrum", placeDays: 6},
+    // {placeName: "Pune", placeDays: 8},
+    // {placeName: "Delhi", placeDays: 10}
+  ]);
 
-    useEffect(() => {
-      loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`,
-        () => handleScriptLoad(setQuery, autoCompleteRef)
-      );
-    }, []);
-    
-    function addPlaceHandler(event){
-      return;
+  useEffect(() => {
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`,
+      () => handleScriptLoad(setQuery, autoCompleteRef)
+    );
+  }, []);
+  
+  function addPlaceHandler(event){
+    const newPlaceCard = {
+      placeName: query,
+      placeDays: numOfDays,
+      placeID: query.place_id                       // ERR : this is showing undefined rn
     }
 
-    return (
-        <>
-        <NavBar page="categories" />
+    setPlaceCardInfo([...placeCardInfo, newPlaceCard]);
+    console.log(placeCardInfo);
+    setNumOfDays(null);
+    setQuery("");
+  }
 
-        <div id="formWrapper">
-            
-            <div id="planHeading">
-                Build your travel package
-            </div>
+  return (
+      <>
+      <NavBar page="categories" />
 
-            <div id="forms">
-                <div className="form" id="form1">
+      <div id="formWrapper">
+          
+          <div id="planHeading">
+              Build your travel package
+          </div>
 
-                  <div className="formInputWrapper" id="inputWrapper1">
-                      <input 
-                          ref={autoCompleteRef}
-                          onChange={event => setQuery(event.target.value)}
-                          className="formInput" id="placeSearchInput" placeholder="City name"
-                          value={query}
-                      />
-                  </div>
-                  
-                  <div className="formInputWrapper" id="inputWrapper2">
-                      <input className="formInput" id="placeDaysInput" placeholder="Duration in days" type="number" />
-                  </div>
-                  <div className="formInputWrapper" id="inputWrapper3">
-                    <button className="formBtn" id="addPlaceBtn" onClick={addPlaceHandler}>Add Place</button>
-                  </div>
+          <div id="forms">
+              <div className="form" id="form1">
 
+                <div className="formInputWrapper" id="inputWrapper1">
+                    <input 
+                        ref={autoCompleteRef}
+                        onChange={event => setQuery(event.target.value)}
+                        className="formInput" id="placeSearchInput" placeholder="City name"
+                        value={query}
+                    />
                 </div>
-
-                <div className="form" id="form2">
-
-                  <div class="formInputWrapper" id="inputWrapper4">
-                      <select onChange={event => setPacing(event.target.value)} name="pacingTypes" className="formInput" id="pacingInput" placeholder="Pacing of the trip">
-                        <option className="pacingValues" value="none" disabled selected hidden>Pacing of the Trip</option>
-                        <option className="pacingValues" value="Slow">Slow</option>
-                        <option className="pacingValues" value="Medium">Medium</option>
-                        <option className="pacingValues" value="Fast">Fast</option>
-                      </select>
-                  </div>
                 
-                  <div onChange={event => setPeople(event.target.value)} className="formInputWrapper" id="inputWrapper5">
-                    <input class="formInput" id="numberOfPeopleInput" placeholder="Number of People" type="number"/>
-                  </div>
-
-                  <div onChange={event => setDate(event.target.value)} id="formLabelWrapper">Trip Starting Date:</div>
-                  <div className="formInputWrapper" id="inputWrapper6">
-                    <input class="formInput" id="startDateInput" placeholder="Starting Date" type="date"/>
-                  </div>
+                <div className="formInputWrapper" id="inputWrapper2">
+                    <input onChange={event => setNumOfDays(event.target.value)} className="formInput" id="placeDaysInput" placeholder="Duration in days" type="number" value={numOfDays} min={1} />
+                </div>
+                <div className="formInputWrapper" id="inputWrapper3">
+                  <button className="formBtn" id="addPlaceBtn" onClick={addPlaceHandler}>Add Place</button>
                 </div>
 
-                <PlaceBoard placeCardInfo={placeCardInfo} setPlaceCardInfo={setPlaceCardInfo}/>
-            </div>
-        </div>
+              </div>
 
-        <BottomNav page="startplanning"/>
-        </>
-    );
+              <div className="form" id="form2">
+
+                <div class="formInputWrapper" id="inputWrapper4">
+                    <select onChange={event => setPacing(event.target.value)} name="pacingTypes" className="formInput" id="pacingInput" placeholder="Pacing of the trip" value={pacing}>
+                      <option className="pacingValues" value="none" disabled selected hidden>Pacing of the Trip</option>
+                      <option className="pacingValues" value="Slow">Slow</option>
+                      <option className="pacingValues" value="Medium">Medium</option>
+                      <option className="pacingValues" value="Fast">Fast</option>
+                    </select>
+                </div>
+              
+                <div className="formInputWrapper" id="inputWrapper5">
+                  <input class="formInput" id="numberOfPeopleInput" placeholder="Number of People" type="number" onChange={event => setPeople(event.target.value)} value={numOfPeople} min={1}/>
+                </div>
+
+                <div  id="formLabelWrapper">Trip Starting Date:</div>
+                <div className="formInputWrapper" id="inputWrapper6">
+                  <input onChange={event => setDate(event.target.value)} class="formInput" id="startDateInput" placeholder="Starting Date" type="date" value={startDate}/>
+                </div>
+              </div>
+
+              <PlaceBoard placeCardInfo={placeCardInfo} setPlaceCardInfo={setPlaceCardInfo}/>
+          </div>
+      </div>
+
+      <BottomNav page="startplanning" placeList={placeCardInfo} pacing={pacing} numOfPeople={numOfPeople} startDate={startDate}/>
+      </>
+  );
 }
 
 export default StartPlanning;

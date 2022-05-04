@@ -5,6 +5,10 @@ import { Outlet, Link } from "react-router-dom";
 
 export default function BottomNav(props){
     if(props.page=="categories"){
+        function setCat(){
+            sessionStorage.setItem("userCategories", JSON.stringify(props.selectedCategories));
+        }
+
         return(
             <>
             <div id="buttonsWrapper">
@@ -17,10 +21,10 @@ export default function BottomNav(props){
                         </button>
                     </Link>
                     <Link to="/startplanning">
-                        <button className="navButton1" id="nextBtn">
-                                <div className="btnText">
-                                    Next
-                                </div>
+                        <button className="navButton1" id="nextBtn" onClick={setCat}>
+                            <div className="btnText" >
+                                Next
+                            </div>
                         </button>
                     </Link>
                 </div>
@@ -31,6 +35,13 @@ export default function BottomNav(props){
         );
     }
     else if(props.page=="startplanning"){
+        function setInfo(){
+            sessionStorage.setItem("placeList", JSON.stringify(props.placeList));
+            sessionStorage.setItem("pacing", JSON.stringify(props.pacing));
+            sessionStorage.setItem("startDate", JSON.stringify(props.startDate));
+            sessionStorage.setItem("numOfPeople", JSON.stringify(props.numOfPeople));
+            console.log(sessionStorage);
+        }
         return(
             <>
             <div id="buttonsWrapper">
@@ -43,7 +54,7 @@ export default function BottomNav(props){
                         </button>
                     </Link>
                     <Link to="/results">
-                        <button className="navButton1" id="nextBtn">
+                        <button className="navButton1" id="nextBtn" onClick={setInfo}>
                                 <div className="btnText">
                                     Next
                                 </div>
