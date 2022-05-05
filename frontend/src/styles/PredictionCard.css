@@ -1,0 +1,51 @@
+.predCardContainer{
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 14px;
+    font-family: "DM sans";
+
+    color: black;
+    background-color: rgb(146, 126, 126);
+    
+    border-radius: 8px;
+
+    margin: 1rem 1rem 0rem 1rem;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+
+    min-height: 3rem;
+}
+.predCardContainer:hover{
+    background-color: rgb(84, 72, 72);
+
+}
+.predCardAddr{
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+.predCardName{
+    font-weight: 700;
+}
+
+.predBtn{
+    border-radius: 8px;
+    font-family: "DM sans";
+    font-size: 12px;
+
+    padding:  0.2rem 0.2rem 0.2rem 0.2rem;
+    max-height: 2rem;
+    display: none;
+
+    background-color: rgb(130, 82, 51);
+    border-style: none;
+    align-self: center;
+}
+.predCardContainer:hover .predBtn{
+    display: inline;
+} 
+.predCardContainer:hover .predBtn:hover{
+    background-color: rgb(105, 66, 41);
+} 
+.predCardContainer:hover .predBtn:active{
+    background-color: rgb(73, 45, 27);
+} 

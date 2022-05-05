@@ -7,8 +7,6 @@ import NavBar from "../components/NavBar";
 import BottomNav from "../components/BottomNav";
 import PlaceBoard from "../components/PlaceBoard";
 
-require('dotenv').config();
-
 let autoComplete;
 const loadScript = (url, callback) => {
   let script = document.createElement("script");
@@ -40,7 +38,9 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
 }
 async function handlePlaceSelect(updateQuery) {
     const addressObject = autoComplete.getPlace();
-    const query = addressObject.formatted_address;
+    // const query = addressObject.formatted_address;
+    const query = addressObject.address_components[0].short_name;
+
     updateQuery(query);
     console.log("selected Place: ", addressObject);
 }
@@ -80,7 +80,6 @@ function StartPlanning(){
 
     setPlaceCardInfo([...placeCardInfo, newPlaceCard]);
     console.log(placeCardInfo);
-    setNumOfDays(null);
     setQuery("");
   }
 

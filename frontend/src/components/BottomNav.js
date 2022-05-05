@@ -70,7 +70,7 @@ export default function BottomNav(props){
 
     else if(props.page=="Results"){
         function setPlaces(){
-            ;
+            sessionStorage.setItem("itinerary", props.itineraryPlaces)
         }
         return(
             <>

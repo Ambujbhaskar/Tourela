@@ -11,7 +11,7 @@ export default function PlaceBoard({placeCardInfo, setPlaceCardInfo}){
             return <PlaceInfoCard key={index} placeName={place.placeName} placeDays={place.placeDays} placeCardInfo={placeCardInfo} setPlaceCardInfo={setPlaceCardInfo}/>;
         })
     }
-    if(placeCardInfo.length==0){
+    if(placeCardInfo.length===0){
         return(
             <>
             <div id="placeBoard2">

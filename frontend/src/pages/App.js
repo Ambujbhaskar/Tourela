@@ -1,6 +1,6 @@
 import '../styles/App.css';
 
-import React, { useState, useEffect, useSelector } from "react";
+import React from 'react';
 import axios from "axios";
 
 import Dashboard from '../components/Dashboard';

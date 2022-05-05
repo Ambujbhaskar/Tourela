@@ -56,7 +56,7 @@ function CategoryCard(props){
         const arr = [...props.selectedCategories];
         if(arr.includes(i)){
             for(let j=0; j < arr.length; j++){
-                if(arr[j] == i){
+                if(arr[j] === i){
                     arr.splice(j,1);
                 }
             }
@@ -101,6 +101,8 @@ function CategoryCard(props){
                 return img9;
             case 10:
                 return img10;
+            default:
+                return null;
         }
     }
 export default Categories;

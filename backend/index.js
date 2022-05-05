@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const res = require("express/lib/response");
+const axios = require("axios");
 
 require('dotenv').config({ debug: true });
 
@@ -54,6 +55,32 @@ app.post('/auth', function(request, response) {
 		response.end();
 	}
 });
+
+app.post('/api/fetchPredictions', (req, res) => {
+  const placeList = req.body.coordsList;
+
+  console.log("placeList ",placeList);
+
+  let arr = [];
+
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${placeList[0].placeLat}%2C${placeList[i].placeLong}&radius=15000&type=restaurant&keyword=cruise&key=${process.env.REACT_APP_API_KEY}`);
+
+  for(let i=0; i<placeList.length; i++){
+    console.log("place  ",placeList[i]);
+
+    try {
+        // arr.push(await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${placeList[i].placeLat}%2C${placeList[i].placeLong}&radius=15000&type=restaurant&keyword=cruise&key=${process.env.REACT_APP_API_KEY}`)
+          console.log(res);
+        }
+    catch (err){
+        console.log(err)
+    }
+  }
+  res.send(arr);
+  res.end();
+});
+
+
 
 function checkAuthFromRequest(req, res) {
   const authHeader = req.get('Authorization');
