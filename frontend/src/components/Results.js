@@ -61,7 +61,9 @@ export default function Results(){
         })
     }
     function predict(predictions){
+        console.log("fullArr",predictions);
         for(let i = 0; i < predictions.length; i++ ){
+            console.log("L",i, predictions[i]);
             if(predictions[i][0]==section){
                 return predictions[i][1].map((result, index) => {
                     return <PredictionCard key={index} result={result} itineraryPlaces={itineraryPlaces} setItineraryPlaces={setItineraryPlaces}/>;
@@ -72,34 +74,27 @@ export default function Results(){
 
 
     useEffect(() => {
-        let arr = [];
-        for(let i = 0; i < placeList.length; i++){
-            const placeString = getKeyword(categories)+placeList[i].placeName ;
-            let request = {
+        const fetchedPredictions = [];
+
+        const fetchPredictionsPromise = placeList.map(async place => {
+            const placeString = getKeyword(categories)+" " + place.placeName;
+            const request = {
                 query: placeString,
                 fields: ['name', 'geometry', 'formatted_address', 'photos'],
             };
 
-            (async () => {
-                let map;
-                let sydney = new window.google.maps.LatLng(-33.867, 151.195);
-                
-                map = new window.google.maps.Map(document.getElementById('map'), {center: sydney, zoom: 15});
+            const sydney = new window.google.maps.LatLng(-33.867, 151.195);
+            const map = new window.google.maps.Map(document.getElementById('map'), {center: sydney, zoom: 15});
+            const service = new window.google.maps.places.PlacesService(map);
 
-                let service = new window.google.maps.places.PlacesService(map);
-                
-                console.log("radahorela idhar maps mein", service)
-        
+            return new Promise(resolve => {
                 service.textSearch(request, function(results, status) {
-                    console.log(results, " RESULTSSS ", status);
-
-                    console.log("predictions: ", arr);
-                    const x = [placeList[i].placeName, results];
-                    arr.push(x);
+                    resolve([place.placeName, results]);
                 });
-            })()
-        }
-        setPredictions(arr)
+            });
+        });
+
+        Promise.all(fetchPredictionsPromise).then(results => setPredictions(results));
     }, []);
     
     console.log("pred: ",predictions)
@@ -123,7 +118,9 @@ export default function Results(){
                         }
                     </div>
                     <div className="predictionCardsWrapper">
-                        {predictions.length===0?"Loading Recommendations":predict(predictions)}
+                        {
+                            predictions.length==0?"loading places":predict(predictions)
+                        }
                     </div>
                 </div>
                 <div className="addedPlacesWrapper">
